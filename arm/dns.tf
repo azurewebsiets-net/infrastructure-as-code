@@ -3,28 +3,9 @@ resource "azurerm_dns_zone" "main" {
   name                = "azurewebsiets.net"
 }
 
-# resource "azurerm_dns_txt_record" "main" {
-#   resource_group_name = azurerm_dns_zone.main.resource_group_name
-#   zone_name = azurerm_dns_zone.main.name
-#   name = "@"
-#   ttl = 30
-#   record {
-#     value = azurerm_static_site_custom_domain.main.validation_token
-#   } 
-# }
-
-# resource "azurerm_dns_a_record" "root" {
-#   resource_group_name = azurerm_resource_group.main.name
-#   zone_name           = azurerm_dns_zone.main.name
-#   name                = "@"
-#   ttl                 = 30
-#   target_resource_id  = azurerm_static_site.main.id
-# }
-
-# resource "azurerm_dns_a_record" "wildcard" {
-#   resource_group_name = azurerm_resource_group.main.name
-#   zone_name           = azurerm_dns_zone.main.name
-#   name                = "*"
-#   ttl                 = 30
-#   target_resource_id  = azurerm_static_site.main.id
-# }
+resource "azurerm_role_assignment" "dns" {
+  # principal_id         = data.azurerm_kubernetes_cluster.main.identity[0].principal_id
+  principal_id         = data.azurerm_kubernetes_cluster.main.kubelet_identity[0].object_id
+  scope                = azurerm_dns_zone.main.id
+  role_definition_name = "DNS Zone Contributor"
+}

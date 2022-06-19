@@ -4,7 +4,13 @@ data "github_repository" "content" {
 
 locals {
   secrets = {
-    # AZURE_STATIC_WEB_APPS_API_TOKEN = azurerm_static_site.main.api_key
+    service_principal_creds = jsonencode({
+      clientId                   = azuread_application.actions.application_id
+      clientSecret               = azuread_application_password.actions.value
+      tenantId                   = data.azuread_client_config.current.tenant_id
+      subscriptionId             = data.azurerm_client_config.current.subscription_id
+      resourceManagerEndpointUrl = "https://management.azure.com/"
+    })
   }
 }
 
