@@ -4,7 +4,7 @@ data "github_repository" "content" {
 
 locals {
   secrets = {
-    AZURE_STATIC_WEB_APPS_API_TOKEN = azurerm_static_site.main.api_key
+    # AZURE_STATIC_WEB_APPS_API_TOKEN = azurerm_static_site.main.api_key
   }
 }
 
