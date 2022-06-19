@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: front
+  namespace: azurewebsiets
+spec:
+  ingressClassName: nginx
+  rules:
+    # - host: {{ .Values.frontend.ingress.hostname }}
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front
+                port:
+                  number: 80
+  # This section is only required if TLS is to be enabled for the Ingress
+  # tls:
+  #   - hosts:
+  #       - www.example.com
+  #     secretName: example-tls
