@@ -12,10 +12,6 @@ resource "azurerm_storage_container" "content" {
 }
 
 
-data "azurerm_kubernetes_cluster" "main" {
-  resource_group_name = "shared-cluster"
-  name                = "shared-cluster"
-}
 
 resource "azurerm_role_assignment" "clusterstorage" {
   principal_id         = data.azurerm_kubernetes_cluster.main.identity[0].principal_id
