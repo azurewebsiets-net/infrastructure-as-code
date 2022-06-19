@@ -4,13 +4,15 @@ data "github_repository" "content" {
 
 locals {
   secrets = {
-    service_principal_creds = jsonencode({
+    SERVICE_PRINCIPAL_CREDS = jsonencode({
       clientId                   = azuread_application.actions.application_id
       clientSecret               = azuread_application_password.actions.value
       tenantId                   = data.azuread_client_config.current.tenant_id
       subscriptionId             = data.azurerm_client_config.current.subscription_id
       resourceManagerEndpointUrl = "https://management.azure.com/"
     })
+    STORAGE_ACCOUNT_NAME   = azurerm_storage_account.site.name
+    STORAGE_CONTAINER_NAME = azurerm_storage_container.content.name
   }
 }
 
