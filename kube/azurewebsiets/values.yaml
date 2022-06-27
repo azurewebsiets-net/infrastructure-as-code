@@ -1,18 +1,3 @@
-namespace: azurewebsiets
-frontend:
-  deployment:
-    name: azurewebsiets-deployment
-    containers:
-      name: azurewebsiets-containers
-    volumes:
-      name: azurewebsiets-myvolume
-  service:
-    name: azurewebsiets-service
-  labels:
-    app: azurewebsiets
-  ingress:
-    name: azurewebsiets-ingress
-    hostname: azurewebsiets.net
-  pvc:
-    name: azurewebsiets-pvc
-    volumeName: azurewebsiets-volume
+sub: subscription id
+rg: resource group name
+dns: dns name

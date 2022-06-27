@@ -3,19 +3,28 @@ kind: Ingress
 metadata:
   name: front
   namespace: azurewebsiets
+  annotations:
+    # cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/issuer: letsencrypt-staging
 spec:
   ingressClassName: nginx
+  # This section is only required if TLS is to be enabled for the Ingress
+  tls:
+    - hosts:
+        # - "*.azurewebsiets.net"
+        - azurewebsiets.net
+      secretName: azurewebsiets-tls
   rules:
-    - host: "*.azurewebsiets.net"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: front
-                port:
-                  number: 80
+    # - host: "*.azurewebsiets.net"
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: front
+    #             port:
+    #               number: 80
     - host: azurewebsiets.net
       http:
         paths:
@@ -26,8 +35,3 @@ spec:
                 name: front
                 port:
                   number: 80
-  # This section is only required if TLS is to be enabled for the Ingress
-  # tls:
-  #   - hosts:
-  #       - www.example.com
-  #     secretName: example-tls
