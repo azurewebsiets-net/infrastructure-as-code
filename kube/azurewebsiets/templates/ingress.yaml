@@ -11,20 +11,20 @@ spec:
   # This section is only required if TLS is to be enabled for the Ingress
   tls:
     - hosts:
-        # - "*.azurewebsiets.net"
+        - "*.azurewebsiets.net"
         - azurewebsiets.net
       secretName: azurewebsiets-tls
   rules:
-    # - host: "*.azurewebsiets.net"
-    #   http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: front
-    #             port:
-    #               number: 80
+    - host: "*.azurewebsiets.net"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front
+                port:
+                  number: 80
     - host: azurewebsiets.net
       http:
         paths:

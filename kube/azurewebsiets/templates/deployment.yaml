@@ -32,6 +32,7 @@ spec:
             - mountPath: "/usr/share/nginx/html"
               name: persistent-storage
       volumes:
+        # https://github.com/kubernetes-sigs/blob-csi-driver/blob/master/deploy/example/e2e_usage.md
         - name: persistent-storage
           csi:
             driver: blob.csi.azure.com
