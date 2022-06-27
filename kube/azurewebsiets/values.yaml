@@ -1,3 +1,4 @@
 sub: subscription id
 rg: resource group name
 dns: dns name
+clientId: clientId

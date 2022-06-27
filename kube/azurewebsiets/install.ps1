@@ -11,5 +11,6 @@ helm upgrade `
     --set "sub=$subscriptionId" `
     --set "rg=$rg" `
     --set "dns=azurewebsiets.net" `
+    --set "clientId=$MIClientId" `
     "azurewebsiets" `
     "./"
