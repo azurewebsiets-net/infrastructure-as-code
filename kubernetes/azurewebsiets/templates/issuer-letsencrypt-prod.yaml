@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: TeamDman9201@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      # Secret resource that will be used to store the account's private key.
+      name: cert-manager-issuer-account-key-prod
+    solvers:
+    - selector: {}
+      dns01:
+        azureDNS:
+          subscriptionID: 134ae9a1-7bc2-41f7-a2c7-a1e55f54ed04
+          resourceGroupName: net.azurewebsiets
+          hostedZoneName: azurewebsiets.net
+          environment: AzurePublicCloud
+          managedIdentity:
+            clientID: 860af6b9-4135-4814-bf81-16f3e8ebcbdd
