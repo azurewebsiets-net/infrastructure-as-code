@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+        <main>
+            <h1 id="beans">200 Web Site found.</h1>
+            <div>
+                <p>You may be seeing this page due to a typo in the url of your browser.</p>
+                <p>Click <a id="fixed">here</a> if you trust links provided by strangers to try and fix your problems.</p>
+                <p>Check out <a href="https://teamdman.ca/">my other projects</a>.</p>
+            </div>
+        </main>
+        
+        <script>
+            document.querySelector("#fixed").setAttribute("href",(window.location+"").replace("azurewebsiets", "azurewebsites"));
+            const h = document.querySelector("#beans");
+            let shadow = "";
+            for (let i=0; i<10; i++) {
+                shadow += `${i*-5}px ${i*-5}px 1px #0c98df${i==9?"":","}`;
+            }
+            h.style.textShadow=shadow;
+        
+        </script>
+        <style>
+            body {
+                background-color: #00abec;
+                color: white;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 22px;
+                overflow: hidden;
+            }
+            h1 {
+                font-weight: normal;
+                font-size: 60px;
+                line-height: 48pt;
+                width: 800px;
+                z-index: -1;
+                left:0px;
+                top:0px;
+            }
+            p {
+                margin-top: 25px;
+            }
+            main {
+                margin: 75px auto 0 auto;
+                width: 960px;
+            }
+            .wheee {
+                position:fixed;
+                margin:0;
+                color:black;
+            }
+        </style>
+	</body>
+</html>
