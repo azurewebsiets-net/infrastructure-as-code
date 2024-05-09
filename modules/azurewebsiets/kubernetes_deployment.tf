@@ -37,6 +37,13 @@ resource "kubernetes_deployment" "nginx" {
           port {
             container_port = 80
           }
+
+          volume_mount {
+            name       = "nginx-conf"
+            mount_path = "/etc/nginx/nginx.conf"
+            sub_path   = "nginx.conf"
+          }
+
           # comment out the volume mount to see the default hello page
           volume_mount {
             name       = "nginx-persistent-storage"
@@ -44,6 +51,14 @@ resource "kubernetes_deployment" "nginx" {
             read_only  = true
           }
         }
+
+        volume {
+          name = "nginx-conf"
+          config_map {
+            name = kubernetes_config_map.nginx_conf.metadata.0.name
+          }
+        }
+
         volume {
           # https://github.com/kubernetes-sigs/blob-csi-driver/blob/master/deploy/example/e2e_usage.md
           # Option#3: Inline volume
